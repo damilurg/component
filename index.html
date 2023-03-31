@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Demo for Class Component</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafa">
+  <script src="./script.js"></script>
+
+  <style>
+    button, input {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+<p>Demo for Class Component</p>
+
+<script>
+  const blueButton = new Component(
+    {
+      type: 'button'
+    },
+    {
+      styles: {
+        backgroundColor: 'blue',
+        color: 'white'
+      },
+      classes: ['blue-button']
+    },
+    ['Click me!'],
+    [
+      function addHoverEffect(element) {
+        element.addEventListener('mouseenter', () => {
+          element.style.backgroundColor = 'lightblue'
+        })
+        element.addEventListener('mouseleave', () => {
+          element.style.backgroundColor = 'blue'
+        })
+      }
+    ],
+    {
+      click: () => alert('Blue Button clicked!')
+    }
+  )
+
+  const redButton = new Component(
+    {
+      type: 'button'
+    },
+    {
+      styles: {
+        backgroundColor: 'red',
+        color: 'black'
+      },
+      classes: ['red-button']
+    },
+    ['Hey! Click me!'],
+    [],
+    {
+      click: () => alert('Red Button clicked!')
+    }
+  )
+
+  const input = new Component(
+    {
+      type: 'input'
+    },
+    {
+      styles: {
+        backgroundColor: 'lightblue',
+        color: 'black'
+      },
+      attributes: {
+        type: 'text',
+        placeholder: 'Input your Email'
+      }
+    },
+    ['Hey! Click me!'],
+  )
+
+  const readonlyInput = new Component(
+    {
+      type: 'input'
+    },
+    {
+      styles: {
+        backgroundColor: 'lightblue',
+        color: 'black'
+      },
+      attributes: {
+        type: 'text',
+        readonly: 'readonly',
+        value: 'Readonly values'
+      }
+    },
+  )
+
+  const requiredInput = new Component(
+    {
+      type: 'input'
+    },
+    {
+      styles: {
+        backgroundColor: 'lightblue',
+        color: 'white'
+      },
+      attributes: {
+        type: 'email',
+        required: 'required',
+        placeholder: 'Input your email'
+      }
+    },
+  )
+
+  const passwordInput = new Component(
+    {
+      type: 'input'
+    },
+    {
+      styles: {
+        backgroundColor: 'lightblue',
+        color: 'white'
+      },
+      attributes: {
+        type: 'password',
+        value: 'Some password'
+      }
+    },
+  )
+
+  const blueButtonElement = blueButton.generateElement()
+  const redButtonElement = redButton.generateElement()
+  const inputElement = input.generateElement()
+  const requiredInputElement = requiredInput.generateElement()
+  const passwordInputElement = passwordInput.generateElement()
+  const readonlyInputElement = readonlyInput.generateElement()
+
+
+  document.body.appendChild(blueButtonElement)
+  document.body.appendChild(redButtonElement)
+  document.body.appendChild(inputElement)
+  document.body.appendChild(requiredInputElement)
+  document.body.appendChild(passwordInputElement)
+  document.body.appendChild(readonlyInputElement)
+</script>
+</body>
+</html>
